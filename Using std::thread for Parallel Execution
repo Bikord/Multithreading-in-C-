@@ -1,0 +1,23 @@
+#include <iostream>
+#include <thread>
+
+void task(int id) {
+    std::cout << "Task " << id << " started." << std::endl;
+    // Simulating work
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+    std::cout << "Task " << id << " completed." << std::endl;
+}
+
+int main() {
+    std::thread threads[5];
+
+    for (int i = 0; i < 5; ++i) {
+        threads[i] = std::thread(task, i);
+    }
+
+    for (int i = 0; i < 5; ++i) {
+        threads[i].join();
+    }
+
+    return 0;
+}
