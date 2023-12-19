@@ -1,0 +1,21 @@
+#include <iostream>
+#include <thread>
+
+// Function that will be executed by a thread
+void threadFunction(int threadID) {
+    std::cout << "Thread " << threadID << " is running" << std::endl;
+}
+
+int main() {
+    // Creating two threads
+    std::thread thread1(threadFunction, 1);
+    std::thread thread2(threadFunction, 2);
+
+    // Joining the threads with the main thread
+    thread1.join();
+    thread2.join();
+
+    std::cout << "Threads have completed execution" << std::endl;
+
+    return 0;
+}
